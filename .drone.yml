@@ -1,0 +1,22 @@
+kind: pipeline
+type: kubernetes
+name: default
+
+steps:
+  - name: build-push
+    image: docker:dind
+    volumes:
+      - name: dockersock
+        path: /run
+    environment:
+      DOCKER_REGISTRY:
+        from_secret: DOCKER_REGISTRY
+      DOCKER_USER:
+        from_secret: DOCKER_USER
+      DOCKER_PASSWORD:
+        from_secret: DOCKER_PASSWORD
+    commands:
+      - sleep 5
+      - docker login $DOCKER_REGISTRY -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - docker build . -t $DOCKER_REGISTRY/drone-kubectl
+      - docker push $DOCKER_REGISTRY/drone-kubectl
