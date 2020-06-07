@@ -14,7 +14,7 @@ steps:
       DOCKER_PASSWORD:
         from_secret: DOCKER_PASSWORD
     commands:
-      - sleep 5
+      - sleep 5 #
       - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       - docker build . -t $DOCKER_USER/drone-kubectl
       - docker push $DOCKER_USER/drone-kubectl
