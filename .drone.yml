@@ -18,3 +18,7 @@ steps:
       - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       - docker build . -t $DOCKER_USER/drone-kubectl
       - docker push $DOCKER_USER/drone-kubectl
+volumes:
+  - name: dockersock
+    host:
+      path: /run
