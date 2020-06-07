@@ -1,7 +1,7 @@
 Forked and built with the latest kubectl. Built monthly.
 https://hub.docker.com/r/adamhancock/drone-kubectl
 
-[![Build Status](https://drone.a9k.io/api/badges/adamhancock/drone-kubectl/status.svg)](https://drone.a9k.io/adamhancock/drone-kubectl)
+[![Build Status](https://drone.a9k.io/api/badges/adamhancock/drone-kubectl/status.svg)]
 
 # drone-kubectl
 
