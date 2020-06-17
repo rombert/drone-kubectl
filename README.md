@@ -5,7 +5,7 @@ https://hub.docker.com/r/adamhancock/drone-kubectl
 
 # drone-kubectl
 
-This [Drone](https://drone.io/) plugin allows you to use `kubectl` without messing around with the authentication
+This [Drone](https://drone.io/) plugin allows you to use `kubectl` without messing around with the authentication.
 
 ## Usage
 
