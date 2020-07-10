@@ -1,7 +1,4 @@
-Forked and built with the latest kubectl. Built monthly.
-https://hub.docker.com/r/adamhancock/drone-kubectl
-
-[![Build Status](https://drone.a9k.io/api/badges/adamhancock/drone-kubectl/status.svg)]
+Forked and built with the latest kubectl. 
 
 # drone-kubectl
 
@@ -16,7 +13,7 @@ name: deploy
 
 steps:
   - name: deploy
-    image: sinlead/drone-kubectl
+    image: lushndm/drone-kubectl
     settings:
       kubernetes_server:
         from_secret: k8s_server
@@ -31,7 +28,11 @@ steps:
 
 ## How to get the credentials
 
-First, you need to have a service account with **proper privileges** and **service-account-token**.
+First, you need to have a service account with **proper privileges** and **service-account-token**:
+```bash
+kubectl create sa --namespace kube-system deploy
+kubectl create clusterrolebinding deploy --clusterrole cluster-admin --serviceaccount=kube-system:deploy
+```
 
 You can find out your server URL which looks like `https://xxx.xxx.xxx.xxx` by the command:
 
@@ -56,4 +57,6 @@ kubectl get secret deploy-token-xxxx -o jsonpath='{.data.token}' | base64 --deco
 
 ### Special thanks
 
-Inspired by [drone-kubernetes](https://github.com/honestbee/drone-kubernetes).
+Inspired by:
+- [drone-kubernetes](https://github.com/honestbee/drone-kubernetes)
+- [drone-kubectl](https://github.com/sinlead/drone-kubectl)
