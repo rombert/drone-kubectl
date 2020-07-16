@@ -14,12 +14,12 @@ name: deploy
 steps:
   - name: deploy
     image: dxas90/drone-kubectl
-    settings:
-      kube_config:
+    environment:
+      KUBE_CONFIG:
         from_secret: kube_config
     commands:
-      - kubectl create -f job_foo.yaml
-      - kubectl wait --for=condition=complete -f job_foo.yaml
+      - /bin/kubectl create -f job_foo.yaml
+      - /bin/kubectl wait --for=condition=complete -f job_foo.yaml
 ```
 
 ## How to get the credentials
