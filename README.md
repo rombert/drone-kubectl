@@ -13,7 +13,7 @@ name: deploy
 
 steps:
   - name: deploy
-    image: lushndm/drone-kubectl
+    image: dxas90/drone-kubectl
     settings:
       kubernetes_server:
         from_secret: k8s_server
