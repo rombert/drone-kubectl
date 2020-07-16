@@ -15,12 +15,8 @@ steps:
   - name: deploy
     image: dxas90/drone-kubectl
     settings:
-      kubernetes_server:
-        from_secret: k8s_server
-      kubernetes_cert:
-        from_secret: k8s_cert
-      kubernetes_token:
-        from_secret: k8s_token
+      kube_config:
+        from_secret: kube_config
     commands:
       - kubectl create -f job_foo.yaml
       - kubectl wait --for=condition=complete -f job_foo.yaml
@@ -30,29 +26,7 @@ steps:
 
 First, you need to have a service account with **proper privileges** and **service-account-token**:
 ```bash
-kubectl create sa --namespace kube-system deploy
-kubectl create clusterrolebinding deploy --clusterrole cluster-admin --serviceaccount=kube-system:deploy
-```
-
-You can find out your server URL which looks like `https://xxx.xxx.xxx.xxx` by the command:
-
-```bash
-kubectl config view -o jsonpath='{range .clusters[*]}{.name}{"\t"}{.cluster.server}{"\n"}{end}'
-```
-
-If the service account is `deploy`, you would have a secret named `deploy-token-xxxx` (xxxx is some random characters).
-You can get your token and certificate by the following commands:
-
-cert:
-
-```bash
-kubectl get secret deploy-token-xxxx -o jsonpath='{.data.ca\.crt}' && echo
-```
-
-token:
-
-```bash
-kubectl get secret deploy-token-xxxx -o jsonpath='{.data.token}' | base64 --decode && echo
+cat ~/.kube/config | base64 -w0 > config-serialized
 ```
 
 ### Special thanks
