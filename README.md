@@ -13,7 +13,7 @@ name: deploy
 
 steps:
   - name: deploy
-    image: dxas90/drone-kubectl
+    image: ghcr.io/rombert/drone-kubectl
     environment:
       KUBE_CONFIG:
         from_secret: kube_config
