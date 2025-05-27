@@ -1,5 +1,3 @@
-Forked and built with the latest kubectl. 
-
 # drone-kubectl
 
 This [Drone](https://drone.io/) plugin allows you to use `kubectl` without messing around with the authentication.
@@ -34,3 +32,4 @@ cat ~/.kube/config | base64 -w0 > config-serialized
 Inspired by:
 - [drone-kubernetes](https://github.com/honestbee/drone-kubernetes)
 - [drone-kubectl](https://github.com/sinlead/drone-kubectl)
+- https://github.com/dxas90/drone-kubectl
